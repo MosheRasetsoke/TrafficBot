@@ -9,7 +9,7 @@ function SearchAndReTweet(){
 
 // find latest tweet according the query 'q' in params
     var params = {
-        q: '#traffic, #Traffic',  // REQUIRED
+        q: '#AATrafficCPT, #ArriveAlive, #AATrafficJHB, #AATrafficCTN, AATrafficDBN, AATrafficPTA, #JHBTraffic, PTATraffic, ',  // REQUIRED
         result_type: 'recent',
         lang: 'en'
     }
