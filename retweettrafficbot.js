@@ -4,16 +4,15 @@ var twit = require("twit");
 var config = require("./config.js");
 var Twitter = new twit(config);
 //
-function SearchAndReTweet(){
-// RETWEET BOT ==========================
-
 // find latest tweet according the query 'q' in params
-    var params = {
-        q: '#AATrafficCPT, #ArriveAlive, #AATrafficJHB, #AATrafficCTN, AATrafficDBN, AATrafficPTA, #JHBTraffic, #PTATraffic',  // REQUIRED
-        result_type: 'recent',
-        lang: 'en'
-    }
-    // for more parametes, see: https://dev.twitter.com/rest/reference/get/search/tweets
+var queryArray = ["#AATrafficCPT", "#ArriveAlive", "#AATrafficJHB", "#AATrafficCTN", "#AATrafficDBN", "#AATrafficPTA", "#JHBTraffic", "#PTATraffic"];
+
+
+//
+function SearchAndReTweet(params){
+	// RETWEET BOT ==========================
+
+    
 
     Twitter.get('search/tweets', params, function(err, data) {
       // if there no errors
@@ -42,5 +41,13 @@ function SearchAndReTweet(){
 	});
 }
 
-
-SearchAndReTweet();
+for(var i = 0; i < queryArray.length; i++){
+	// for more parametes, see: https://dev.twitter.com/rest/reference/get/search/tweets
+	var params = {
+		q: queryArray[i],  // REQUIRED
+		result_type: 'recent',
+		lang: 'en'
+	}
+	//
+	SearchAndReTweet(params);
+}
