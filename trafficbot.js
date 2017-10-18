@@ -9,7 +9,7 @@ var fs = require('fs');
 // traffic_sign _6.PNG
 function TweetTrafficSign(trafficSign){
 	
-	var b64content = fs.readFileSync('./images/'+trafficSign, { encoding: 'base64' });
+	var b64content = fs.readFileSync('/data/data/com.termux/files/home/TrafficBot/images/'+trafficSign, { encoding: 'base64' });
 	 
 	// first we must post the media to Twitter 
 	Twitter.post('media/upload', { media_data: b64content }, function (err, data, response) {
@@ -32,8 +32,10 @@ function TweetTrafficSign(trafficSign){
 	});
 }
 
-setInterval(function(){
+function PublishTweet(){
 	var index = Math.floor(Math.random() * 6) + 1;
 	var trafficImage = "traffic_sign _"+index+".PNG";
 	TweetTrafficSign(trafficImage);
-}, 30*60*1000);
+}
+
+PublishTweet();
