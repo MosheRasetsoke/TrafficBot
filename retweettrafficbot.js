@@ -18,21 +18,24 @@ function SearchAndReTweet(params){
       // if there no errors
         if (!err) {
           // grab ID of tweet to retweet
-            var retweetId = data.statuses[0].id_str;
+            var retweetStatuses = data.statuses; //[0].id_str;
             // Tell TWITTER to retweet
-            Twitter.post('statuses/retweet/:id', {
-                id: retweetId
-            }, function(err, response) {
-                if (response) {
-                    console.log('Retweeted!!!');
-                }
-                // if there was an error while tweeting
-                if (err) {
-                    console.log('Something went wrong while RETWEETING... Duplication maybe...');
-                }else{
-					console.log("Retweeted Succesfully!!!");
-				}
-            });
+			for(var i = 0; i < retweetStatuses.length; i++){
+				var retweetId = retweetStatuses[i].id_str;
+				Twitter.post('statuses/retweet/:id', {
+					id: retweetId
+				}, function(err, response) {
+					if (response) {
+						console.log('Retweeted!!!');
+					}
+					// if there was an error while tweeting
+					if (err) {
+						console.log('Something went wrong while RETWEETING... Duplication maybe...');
+					}else{
+						console.log("Retweeted Succesfully!!!");
+					}
+				});
+			}
         }
         // if unable to Search a tweet
         else {
@@ -46,7 +49,8 @@ for(var i = 0; i < queryArray.length; i++){
 	var params = {
 		q: queryArray[i],  // REQUIRED
 		result_type: 'recent',
-		lang: 'en'
+		lang: 'en',
+		count: 5
 	}
 	//
 	SearchAndReTweet(params);
