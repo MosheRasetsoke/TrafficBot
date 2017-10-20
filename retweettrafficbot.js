@@ -4,6 +4,13 @@ var twit = require("twit");
 var config = require("./config.js");
 var Twitter = new twit(config);
 //
+//Set Date
+var date = new Date();
+var year = date.getFullYear();
+var month = date.getMonth();
+var day = date.getDay();
+var fulldate = year + "/" + month + "/" + day;
+//
 // find latest tweet according the query 'q' in params
 var queryArray = ["#AATrafficCPT", "#ArriveAlive", "#AATrafficJHB", "#AATrafficCTN", "#AATrafficDBN", "#AATrafficPTA", "#JHBTraffic", "#PTATraffic"];
 
@@ -26,13 +33,13 @@ function SearchAndReTweet(params){
 					id: retweetId
 				}, function(err, response) {
 					if (response) {
-						console.log('Retweeted!!!');
+						console.log(fulldate + ' - Retweeted!!!');
 					}
 					// if there was an error while tweeting
 					if (err) {
-						console.log('Something went wrong while RETWEETING... Duplication maybe...');
+						console.log(fulldate + ' - Something went wrong while RETWEETING... Duplication maybe...');
 					}else{
-						console.log("Retweeted Succesfully!!!");
+						console.log(fulldate + " - Retweeted Succesfully!!!");
 					}
 				});
 			}
