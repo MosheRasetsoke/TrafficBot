@@ -5,22 +5,17 @@ var config = require("./config.js");
 var Twitter = new twit(config);
 //
 //Set Date
-var date = new Date();
-var year = date.getFullYear();
-var month = date.getMonth();
-var day = date.getDay();
+var today = new Date();
+var year = today.getFullYear();
+var month = today.getMonth() + 1;
+var day = today.getDate();
 var fulldate = year + "/" + month + "/" + day;
 //
 // find latest tweet according the query 'q' in params
 var queryArray = ["#AATrafficCPT", "#ArriveAlive", "#AATrafficJHB", "#AATrafficCTN", "#AATrafficDBN", "#AATrafficPTA", "#JHBTraffic", "#PTATraffic"];
-
-
 //
 function SearchAndReTweet(params){
 	// RETWEET BOT ==========================
-
-    
-
     Twitter.get('search/tweets', params, function(err, data) {
       // if there no errors
         if (!err) {
