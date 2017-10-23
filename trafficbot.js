@@ -33,7 +33,7 @@ function TweetTrafficSign(trafficSign){
 }
 
 function PublishTweet(){
-	var index = Math.floor(Math.random() * 6) + 1;
+	var index = Math.floor(Math.random() * 31) + 1;
 	var trafficImage = "traffic_sign _"+index+".PNG";
 	TweetTrafficSign(trafficImage);
 }
